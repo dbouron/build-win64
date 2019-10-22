@@ -134,6 +134,11 @@
     name="zlib"
     href="https://zlib.net/"/>
 
+  <repository
+    type="tarball"
+    name="libimagequant"
+    href="https://github.com/ImageOptim/libimagequant/archive/"/>
+
   <!-- the zlib configure is a bit basic and does not support
        cross-compiling, so use cmake
 
@@ -141,6 +146,15 @@
        patch CMakeLists.txt
 
     -->
+
+  <autotools id="libimagequant"
+    autogen-sh="configure">
+    <branch
+      repo="libimagequant"
+      module="2.12.2.tar.gz"
+      version="2.12.2"
+      checkoutdir="libimagequant-2.12.2"/>
+  </autotools>
 
   <cmake id="zlib"
     cmakeargs="-DINSTALL_PKGCONFIG_DIR:PATH=lib/pkgconfig"
@@ -801,7 +815,7 @@
 
   <autotools id="libvips-all"
     autogen-sh="configure"
-    autogenargs="--enable-debug=no --without-OpenEXR --without-pdfium --without-imagequant --disable-introspection"
+    autogenargs="--enable-debug=no --without-OpenEXR --without-pdfium --without-imagequant --disable-introspection --without-magick --with-libimagequant "
     makeargs="CFLAGS=-O3 CXXFLAGS=-O3">
 
     <branch
@@ -811,25 +825,17 @@
       checkoutdir="vips-8.8.3"/>
 
     <dependencies>
-      <dep package="cfitsio"/>
+      <dep package="libimagequant"/>
       <dep package="matio"/>
+      <dep package="expat"/>
       <dep package="webp"/>
-      <dep package="librsvg"/>
       <dep package="giflib"/>
-      <dep package="poppler"/>
       <dep package="glib"/>
       <dep package="orc-0.4"/>
-      <dep package="pango"/>
-      <dep package="fftw3"/>
-      <dep package="libgsf"/>
       <dep package="libjpeg-turbo"/>
-      <dep package="tiff"/>
-      <dep package="openslide"/>
       <dep package="lcms"/>
       <dep package="libexif"/>
-      <dep package="imagemagick"/>
       <dep package="libpng"/>
-      <dep package="libheif"/>
     </dependencies>
   </autotools>
 

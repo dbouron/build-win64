@@ -122,7 +122,7 @@ nonotify = True
 
 # trim jhbuild's default parallelisation down ... it uses 2x#cores jobs, which
 # can actually melt some hardware
-makeargs = '-j1'
+makeargs = '-j10'
 
 use_ninja = False
 

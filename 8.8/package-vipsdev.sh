@@ -38,7 +38,6 @@ echo "Copying libvips and dependencies"
 echo "Copying install area $installdir"
 
 # Follow symlinks when copying /share and /etc
-cp -Lr $installdir/{share,etc} $repackagedir
 
 # Copy everything from /lib and /include, then delete the symlinks
 cp -r $installdir/{lib,include} $repackagedir
@@ -59,7 +58,7 @@ rm -rf $repackagedir/lib/{*cairo*,*gdk*,ldscripts}
 find $repackagedir/lib -name "*.la" -exec rm -f {} \;
 
 # We only support GB and de locales
-find $repackagedir/share/locale -mindepth 1 -maxdepth 1 -type d ! -name "en_GB" ! -name "de" -exec rm -rf {} \;
+
 
 echo "Copying vips executables"
 
